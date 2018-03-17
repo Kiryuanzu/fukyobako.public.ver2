@@ -1,0 +1,16 @@
+ <html>
+ <head>
+ <%= render 'top/script' %>
+ </head>
+<body>
+<div class="contents">
+<% if current_user %>
+<%= render partial: 'odais/new' , odai: @odai %>
+<% else %>
+<span class="notuser"><%= link_to "新規登録", new_registration_path(resource_name) %>or<%= link_to "ログイン", new_session_path(resource_name) %>してお題/布教する</span>
+<% end %>
+
+
+<%= render 'top/contents' %>
+</div>
+</body>

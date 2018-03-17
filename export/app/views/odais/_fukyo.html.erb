@@ -1,0 +1,21 @@
+<div class ="fukyo" > 
+<table class="table table-striped table-responsive">
+  <tr class="something">
+    <th>お題</th>
+    <th>布教タイトル</th>
+    <th>布教詳細</th>
+    <th>布教URL</th>
+  </tr>
+  <tr class="something">
+    <td class= "col-md-3" ><%= fukyo.odai.detail %></td>
+    <td class= "col-md-3"><%= fukyo.title  %></td>
+    <td td class= "col-md-3" ><%= fukyo.detail %></td>
+    <td><%= link_to fukyo.URL, fukyo.URL, :target => "_blank" %></td>
+    <td><%= link_to "コメントする", fukyo_path(fukyo.id), method: :get %>
+    <% if user_signed_in? && current_user.id == fukyo.user_id %>
+    <td><%= link_to '削除', "/fukyos/#{fukyo.id}", method: :delete %>
+    </td>
+      <% end %>
+  </tr>
+</table>
+</div>

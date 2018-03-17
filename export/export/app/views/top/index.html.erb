@@ -1,0 +1,88 @@
+ <html>
+ <head>
+ <script type="text/javascript">
+ $(function(){
+  $("ul.panel li:not("+$("ul.tab li a.selected")
+  .attr("href")+")").hide();
+  $("ul.tab li a").click(function(){
+  $("ul.tab li a.selected").removeClass("selected");
+  $(this).addClass("selected");
+  $("ul.panel li").hide();
+  $($(this).attr("href")).show();
+  return false;
+  });
+});
+
+ </script>
+ </head>
+<body>
+<div class="contents">
+
+<%= render partial: 'odais/form' , odai: @odai %>
+
+<div id="top-index">
+  <ul class="tab">
+    <li><a href="#tab1" class="selected">お題一覧/布教する</a></li>
+    <li><a href="#tab2">布教一覧</a></li>
+  </ul>
+  <ul class="panel">
+    <li id="tab1">
+    <table>
+  <tr>
+    <th>お題を出してくれた人</th>
+    <th>お題</th>
+    <th>布教ボタン</th>
+  </tr>
+<% @odais.each do |odai| %>
+  <tr>
+    <td>
+    <%= link_to (image_tag odai.user.avatar.url(:medium)) , odai.user %>
+    <p><%= odai.user.username %></td>
+    <td><%= odai.detail %></td>
+    <td><%= form_tag(new_fukyo_path, method: :get) do %>
+      <%= hidden_field_tag(:odai_id, odai.id) %>
+      <%= submit_tag("布教する") %>
+      <% end %>
+    </td>
+    <td>
+    <%= link_to "このお題の布教一覧", odai_path(odai.id), method: :get %>
+    </td>
+     <% if user_signed_in? && current_user.id == odai.user_id %>
+    <td><%= link_to '削除', "/odais/#{odai.id}", method: :delete %>
+    </td>
+     <% end %>
+  </tr>
+<% end %>
+<%= paginate(@odais) %>
+</table>
+    </li>
+    <li id="tab2">
+  <table>
+  <tr>
+    <th>布教してくれた人</th>
+    <th>お題</th>
+    <th>布教タイトル</th>
+    <th>布教詳細</th>
+    <th>布教URL</th>
+  </tr>
+<% @fukyos.each do |fukyo| %>
+  <tr>
+     <td><%= image_tag fukyo.user.avatar.url(:medium) %>       
+     </td>
+    <td><%= fukyo.odai.detail %></td>
+    <td><%= fukyo.title  %></td>
+    <td><%= fukyo.detail %></td>
+    <td><%= fukyo.URL %></td>
+    <td></td>
+    <% if user_signed_in? && current_user.id == fukyo.user_id %>
+    <td><%= link_to '削除', "/fukyos/#{fukyo.id}", method: :delete %>
+    <% end %>
+    </td>
+  </tr>
+<% end %>
+<%= paginate(@fukyos) %>
+</table></li>
+  </ul>
+</div>
+</div>
+</body>

@@ -1,0 +1,12 @@
+ <tr> 
+    <td><%= link_to fukyo.odai.detail, "odais/#{fukyo.odai.id}" %></td>
+    <td><%= link_to fukyo.title, "/fukyos/#{fukyo.id}" %></td>
+    <td><%= fukyo.detail %></td>
+    <td><%= link_to fukyo.URL, fukyo.URL, :target => "_blank" %></td>
+    <td></td>
+    <% if user_signed_in? && current_user.id == fukyo.user_id %>
+    <td><%= link_to '削除', "/fukyos/#{fukyo.id}", method: :delete %>
+
+    <% end %>
+    </td>
+  </tr>

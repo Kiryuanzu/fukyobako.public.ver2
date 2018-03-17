@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Fukyobako</title>
+    <title><%= yield(:title) %> | 布教箱</title>
+    <%= csrf_meta_tags %>
+
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <meta name="description" content="<%= yield(:description).presence || '布教してほしいお題を投稿する&匿名でお題に対する布教ができるWebサービス'%>"> <!-- descripitonからtopic.contentを呼び出す-->
+    <meta name="keywords" content="布教,お題,投稿,布教箱,Twitter">
+
+    <meta property="og:title" content="<%= yield(:title) %> 布教箱">
+    <meta property="og:site_name" content="布教箱">
+    <meta property="og:description" content="<%= yield(:description).presence || 
+    '布教してほしいお題を投稿する&匿名でお題に対する布教ができるWebサービス'%>"/>
+    <meta property="og:url" content="<%= yield(:site_url).presence || 'https://fukyobako.herokuapp.com'%>" />
+  <!-- provide site_urlを生み出して個別ページにURLのOGを作る -->
+    <meta property="og:image" content='https://fukyobako.herokuapp.com/assets/letsfukyo-5c6a98d77a551069964fbd86a8e8e4c5f45729bf9f50d8de6a0672b2a7ab94f1.png'/>
+    <meta property="og:type" content="summary" />
+
+    <meta name="twitter:card" content="summary" />
+
+    <meta name="twitter:title" content="<%= yield(:title) %> | 布教箱"><!-- topic.titleをprovideする -->
+    <meta name="twitter:description" content="<%= yield(:description).presence || '布教してほしいお題を投稿する&匿名でお題に対する布教ができるWebサービス'%>">
+  <!-- topic.contentを:descriptionという名前でprovideしてみる -->
+    <meta name="twitter:domain" content="Fukyobako.com">
+    <meta name="twitter:image:src" content='https://fukyobako.herokuapp.com/assets/letsfukyo-5c6a98d77a551069964fbd86a8e8e4c5f45729bf9f50d8de6a0672b2a7ab94f1.png'%>"/>
+  </head>
+
+  <body>
+  <header class="navbar navbar-fixed-top navbar-inverse">
+  <div class="container">
+        <script>
+        $(document).ready(function() {
+            $('img').addClass('miss');
+            $('img.miss').error(function() {
+                $(this).attr({
+                    src: '/Noimage.png',
+                    alt: 'none image',
+                    style:'border: 1px solid #eee;width:80px;height:80px;margin: 8px;'
+                });
+            });
+        });
+    </script>
+       <nav>
+        <%= link_to image_tag('/logo.png', { :class => "Fukyo-logo"} ), root_url %>
+       
+        <div class="profile" >
+          <ul class="nav navbar-nav">
+            <% if user_signed_in? %>
+                 <li>
+                 <%= link_to '自分のプロフィール', user_path(current_user) %></li>
+                 <li><%= link_to '設定', edit_user_registration_path %> </li>
+                 <li><%= link_to 'ログアウト', destroy_user_session_path, method: :delete %></li>
+                 <li><%= link_to '布教箱とは', about_path %></li>
+            <% else %>
+                <li><%= link_to 'サインアップ', new_user_registration_path %></li>
+                <li><%= link_to 'ログイン', new_user_session_path %></li>
+                <li><%= link_to'布教箱とは', about_path %></li>
+              </ul>
+                
+            <% end %>
+         </div>
+        </nav>
+     </div>
+     </header>
+     
+    <p class="notice"><%= notice %></p>
+    <p class="alert"><%= alert %></p>
+
+    <%= yield %>
+  </body>
+</html>

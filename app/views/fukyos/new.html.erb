@@ -1,0 +1,10 @@
+<span class= "odai">お題：</span><span class= "detail" ><%= @odai.detail %></span>
+<div class="fukyoform">
+  <%= form_for(@fukyo) do |f| %>
+    <%= f.text_area :title, placeholder: "タイトルを入力(必須・140文字以内)", cols:"30", rows:"3", autofocus:"true", required: true %>
+    <%= f.text_area :detail, placeholder: "詳細を入力(自由記入・500字以内)", cols:"30", rows:"8", autofocus:"true" %>
+    <%= f.text_area :URL, placeholder: "URLを入力(自由記入)", cols:"30", rows:"3", autofocus:"true" %>
+    <%= f.hidden_field :odai_id %>
+    <%= f.submit "布教する", :class =>"btn btn-info" %>
+<% end %>
+</div>

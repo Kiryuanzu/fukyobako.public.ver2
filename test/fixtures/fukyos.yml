@@ -1,0 +1,21 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+# This model initially had no columns defined. If you add columns to the
+# model remove the '{}' from the fixture names and add the columns immediately
+# below each fixture, per the syntax in the comments below
+#
+fukyo_one:
+  user: nagato
+  odai: odai_one
+  title: "アボカド"
+  detail: "食感がおいしい"
+  URL: "http://www.irasutoya.com/2012/11/blog-post_4.html"
+
+#
+fukyo_two:
+  user: anzu
+  odai: odai_two
+  title: "りゅうおうのおしごと！"
+  detail: "燃えて萌える"
+  URL: "http://www.ryuoh-anime.com/"
+# column: value

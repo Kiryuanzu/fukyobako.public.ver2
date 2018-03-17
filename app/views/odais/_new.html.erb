@@ -1,0 +1,9 @@
+<div class="odaiform">
+  <%= form_for(@odai) do |f| %>
+    <h3>
+      布教して欲しいお題を投稿しましょう(140字以内)
+    </h3>
+    <%= f.text_area :detail, cols:"80", placeholder:"（例：◯◯なキャラが出る作品、ストーリーが◯◯な作品など自分が見たい/読みたいと思っているイメージを書いてみましょう）", rows:"3", required: true %>
+    <%= f.submit "お題を投稿", :class =>"btn btn-primary" %>
+  <% end %>
+</div>

@@ -1,0 +1,13 @@
+ <% provide(:description,"お題:"+ @odai.detail.to_s) %>
+ <% provide(:site_url,url_for( :only_path => false)) %>
+<span class= "odai">お題：</span>
+  <span class= "detail" >
+	<%= @odai.detail %>
+  </span>
+  <p><a href="http://twitter.com/share?url=https://fukyobako.herokuapp.com/odais/<%= @odai.id %>&amp;text=<%= @odai.user.username %>さんのお題:「<%= @odai.detail.truncate(90) %>」にレッツ布教！&amp;related=kiryuanzu&amp;hashtags=fukyobako" id="tweet" class="btn btn-info withripple btn-lg" target="_blank" name="tweet">twitterでお題を共有する</a></p>
+ <%= form_tag(new_fukyo_path, method: :get ) do %>
+      <%= hidden_field_tag(:odai_id, @odai.id) %>
+      <%= submit_tag("布教する", :class =>"btn btn-default btn-lg") %>
+      <% end %>
+
+<%= render partial: "odais/fukyo", collection: @fukyos %>

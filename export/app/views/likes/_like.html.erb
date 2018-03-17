@@ -1,0 +1,22 @@
+<% if user_signed_in? %>
+  <% if fukyo.like_user(current_user.id) %>
+    <%= button_to fukyo_likes_path(fukyo), method: :delete, id: "like-button", remote: true do %>
+      <%= fa_icon 'heart' %>
+      <span>
+        <%= fukyo.likes_count %>
+      </span>
+    <% end %>
+  <% else %>
+    <%= button_to fukyo_likes_path(fukyo), id: "like-button", remote: true do %>
+      <%= fa_icon 'heart-o' %>
+      <span>
+        <%= fukyo.likes_count %>
+      </span>
+    <% end %>
+  <% end %>
+<% else %>
+  <%= fa_icon 'heart' %>
+    <span>
+      <%= fukyo.likes_count %>
+    </span>
+<% end %>

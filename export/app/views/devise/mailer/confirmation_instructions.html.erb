@@ -1,0 +1,5 @@
+<p>布教箱にようこそ、 <%= @email %>さん!</p>
+
+<p>メールアドレスの認証を完了することで、あなたは布教箱を使えるようになります。</p>
+
+<p><%= link_to "let's Fukyo" , confirmation_url(@resource, confirmation_token: @token) %></p>

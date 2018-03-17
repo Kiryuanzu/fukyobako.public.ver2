@@ -1,0 +1,21 @@
+<table>
+  <tr>
+    <th>お題を出した人の名前</th>
+    <th>お題</th>
+    <th>布教ボタン</th>
+  </tr>
+<% @odais.each do |odai| %>
+  <tr>
+    <td><%= odai.user.username %>
+    <td><%= odai.detail :class => :"h3" %></td>
+    <td><%= form_tag(new_fukyo_path, method: :get) do %>
+      <%= hidden_field_tag(:odai_id, odai.id) %>
+      <%= submit_tag("布教する") %>
+    </td>
+    <% if user_signed_in? && current_user.id == odai.user_id %>
+    <td><%= link_to '削除', "/fukyos/#{fukyo.id}", method: :delete %>
+    </td>
+      <% end %>
+  </tr>
+<% end %>
+</table>

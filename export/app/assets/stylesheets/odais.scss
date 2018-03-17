@@ -1,0 +1,50 @@
+// Place all the styles related to the odais controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+@import "bootstrap-sprockets";
+ @import "bootstrap";
+.odaiform{
+	margin-left: 100px;
+	border: 2px solid lightpink;
+	background-color: snow;
+	width: 800px;
+	height: 140px;
+	padding-left: 30px;
+	padding-bottom: 10px;
+	span{
+		  p{padding-right: 190px;
+
+		}
+	}
+}
+
+p {  font-size: 100px;
+	 font-weight: bold;
+	 padding-left: 50px;
+	 
+
+}
+
+textarea {
+	resize: none;
+	border: 1px solid #ffc0cb;
+	box-shadow: 0 0 7px #ffc0cb;
+}
+
+
+.odai{ font-size: 35px; 
+	  font-weight: bold;
+	  color: gray;
+	  font-family: 'Avenir' ;
+	  padding-left: 20px;
+	 
+
+}
+
+.detail {font-size: 35px; 
+	  font-weight: bold;
+	  color: #a25768;
+	  font-family: 'Avenir' ;
+
+}
+

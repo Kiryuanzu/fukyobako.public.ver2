@@ -1,0 +1,64 @@
+<div id="top-index">
+  <ul class="tab">
+    <li><a href="#tab1" class="selected">お題一覧/布教する</a></li>
+    <li><a href="#tab2">布教一覧</a></li>
+  </ul>
+  <ul class="panel">
+    <li id="tab1">
+  <table class="table">
+  <tr>
+    <th>ユーザー</th>
+    <th>お題</th>
+    <th>布教ボタン</th>
+  </tr>
+<% @odais.each do |odai| %>
+  <tr>
+    <td>
+    <%= link_to (gravatar_for odai.user), odai.user %>
+    <p><%= odai.user.username %></p></td>
+    <td class="title"><%= odai.detail %></td>
+    <td>
+      <%= form_tag(new_fukyo_path, method: :get ) do %>
+        <%= hidden_field_tag(:odai_id, odai.id) %>
+        <%= submit_tag("布教する", :class =>"btn btn-info") %>
+      <% end %>
+    </td>
+      <td>
+      <%= link_to "このお題の布教一覧", odai_path(odai.id), :class =>"btn btn-success" %>
+      <p class="count"><%= pluralize(odai.fukyos.count, "個の布教'") %></p>
+      </td>
+     <% if user_signed_in? && current_user.id == odai.user_id %>
+     <td><%= link_to '削除', "/odais/#{odai.id}", :class =>"btn btn-danger", method: :delete %></td>
+         <% end %>
+   </tr>
+<% end %>
+<%= paginate(@odais) %>
+</table>
+    </li>
+
+    <li id="tab2">
+ <table class="table fukyotable">
+  <tr class="something">
+    <th>お題</th>
+    <th>布教タイトル</th>
+    <th>布教詳細</th>
+    <th>布教URL</th>
+    <th> </th>
+  </tr>
+
+<% @fukyos.each do |fukyo| %>
+    <tr>
+    <td class= "col-xs-6"><%= link_to fukyo.odai.detail, "odais/#{fukyo.odai.id}" %></td>
+    <td  class= "col-xs-6"><%= link_to fukyo.title, "/fukyos/#{fukyo.id}" %></td>
+    <td  class= "col-xs-2" ><%= fukyo.detail %></td>
+    <td><%= link_to fukyo.URL, fukyo.URL, :target => "_blank" %></td>
+    <td><% if user_signed_in? && current_user.id == fukyo.user_id %>
+    <%= link_to '削除', "/fukyos/#{fukyo.id}", :class =>"btn btn-danger", method: :delete %>
+    <% end %></td>
+  </tr>
+<% end %>
+<%= paginate(@fukyos) %>
+</table>
+</li>
+  </ul>
+</div>

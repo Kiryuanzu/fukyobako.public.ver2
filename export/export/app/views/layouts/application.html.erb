@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Fukyobako</title>
+
+    <%= csrf_meta_tags %>
+
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+  </head>
+
+  <body>
+    <header>
+        <script>
+        $(document).ready(function() {
+            $('img').addClass('miss');
+            $('img.miss').error(function() {
+                $(this).attr({
+                    src: '/Noimage.png',
+                    alt: 'none image',
+                    style:'border: 1px solid #eee;width:80px;height:80px;margin: 8px;'
+                });
+            });
+        });
+    </script>
+       <nav>
+        <img src="/Fukyo.logo.png" class="Fukyo-logo">
+        <div class="profile" %>
+            <% if user_signed_in? %>
+                 <strong><%= link_to '自分のプロフィール', user_path(current_user) %></strong>
+                 <%= link_to '設定', edit_user_registration_path %>
+                 <%= link_to 'ログアウト', destroy_user_session_path, method: :delete %>
+                 <%= link_to '布教箱とは', about_path %>
+            <% else %>
+                <%= link_to 'サインアップ', new_user_registration_path %>
+                <%= link_to 'ログイン', new_user_session_path %>
+                <%= link_to'布教箱とは', about_path %>
+            <% end %>
+         </div>
+        </nav>
+
+     </header>
+     
+    <p class="notice"><%= notice %></p>
+    <p class="alert"><%= alert %></p>
+
+    <%= yield %>
+  </body>
+</html>

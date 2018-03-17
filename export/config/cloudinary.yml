@@ -1,0 +1,19 @@
+---
+development:
+  cloud_name: hwhfg7tbr
+  api_key: '937128431823917'
+  api_secret: _sWoAJvm9Sry9I3E0WHorLxKJlI
+  enhance_image_tag: true
+  static_image_support: false
+production:
+  cloud_name: hwhfg7tbr
+  api_key: '937128431823917'
+  api_secret: _sWoAJvm9Sry9I3E0WHorLxKJlI
+  enhance_image_tag: true
+  static_image_support: true
+test:
+  cloud_name: hwhfg7tbr
+  api_key: '937128431823917'
+  api_secret: _sWoAJvm9Sry9I3E0WHorLxKJlI
+  enhance_image_tag: true
+  static_image_support: false

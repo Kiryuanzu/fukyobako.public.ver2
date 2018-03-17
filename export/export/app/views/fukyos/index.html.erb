@@ -1,0 +1,18 @@
+<table>
+  <tr>
+    <th>お題</th>
+    <th>布教タイトル</th>
+    <th>布教詳細</th>
+    <th>布教URL</th>
+  </tr>
+<% @fukyos.each do |fukyo| %>
+  <tr>
+    <td><%= fukyo.odai.detail %></td>
+    <td><%= fukyo.title  %></td>
+    <td><%= fukyo.detail %></td>
+    <td><%= fukyo.URL %></td>
+  </tr>
+<% end %>
+</table>
+
+<%= link_to 'Back' , top_index_path %>

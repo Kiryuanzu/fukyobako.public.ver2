@@ -1,0 +1,7 @@
+<%= form_for current_user do |f| %>
+
+<h2>名前を変更</h2>
+<div class="form-group file">
+ <%= f.text_field :username, placeholder: "name(12文字以内)", class: "form-control" %>
+<%= f.submit "送信", class: "btn btn-primary withripple" %>
+<% end %>

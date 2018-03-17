@@ -1,0 +1,9 @@
+<div class="odaiform">
+  <%= form_tag('/odais', method: :post) do %>
+    <h3>
+      布教して欲しいお題を投稿しましょう(140字以内)
+    </h3>
+    <textarea  cols="80" name="detail" placeholder="（例：◯◯なキャラが出る作品、ストーリーが◯◯な作品など自分が見たい/読みたいと思っているイメージを書いてみましょう）" rows="3" required></textarea>
+   <input class="btn btn-primary" type="submit" value="Submit">
+  <% end %>
+</div>
